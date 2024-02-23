@@ -72,10 +72,13 @@ export default authMiddleware({
       auth.userId &&
       isAuthRoute
     ) {
+      console.log("redirecting to default login redirect")
       return NextResponse.redirect(new URL(DEFAULT_LOGIN_REDIRECT, req.url));
     }
 
-    if (!auth.userId && req.nextUrl.pathname.includes(DEFAULT_LOGIN_REDIRECT)) {
+    const isPublicRoute = publicRoutes.includes(req.nextUrl.pathname);
+    if (!auth.userId && req.nextUrl.pathname === DEFAULT_LOGIN_REDIRECT) {
+      console.log("redirecting to sign-in")
       return NextResponse.redirect(new URL("/sign-in", req.url));
     }
 

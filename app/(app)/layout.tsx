@@ -12,14 +12,8 @@ export default async function AppLayout({
   return (
     <main>
       <ClerkProvider>
-        <div className="flex h-screen">
-          <Sidebar />
-          <main className="flex-1 md:p-8 pt-2 p-8 overflow-y-auto">
-            <Navbar />
-            {children}
-          </main>
-        </div></ClerkProvider>
-
+        {children}
+      </ClerkProvider>
       <Toaster richColors />
     </main>)
 }

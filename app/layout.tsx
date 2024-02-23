@@ -5,6 +5,7 @@ import "./clerk.css"
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
 import { siteConfig } from "@/config/site";
+import { cn } from "@/lib/utils";
 
 const sans = DM_Sans({ subsets: ["latin"] });
 
@@ -61,7 +62,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={sans.className}>
+      <body className={
+        cn(sans.className, "selection:bg-foreground selection:text-background")
+        }>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           {children}
           <Toaster />
