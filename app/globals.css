@@ -10,6 +10,8 @@
     --card: 0 0% 100%;
     --card-foreground: 0 0% 3.9%;
  
+    --aside: 0 0%98%;
+
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
  
@@ -74,6 +76,8 @@
 
     --background: 199 47.449999999999996% 4%;
     --foreground: 199 7.3% 97.5%;
+
+    --aside: 0 0% 11%;
 
     --muted: 199 36.5% 15%;
     --muted-foreground: 199 7.3% 55%;
