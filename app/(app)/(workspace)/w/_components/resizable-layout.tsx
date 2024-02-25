@@ -23,7 +23,7 @@ export const ResizableLayout = ({
     >
       <ResizablePanel
         className={cn(' opacity-100', isCollapsed && 'transition-all duration-300 opacity-0 !flex-grow-0')}
-        minSize={0}
+        minSize={14}
         maxSize={30}
        
         defaultSize={defaultSize[0]}

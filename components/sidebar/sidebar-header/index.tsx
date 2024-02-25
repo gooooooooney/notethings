@@ -1,5 +1,5 @@
 import React from 'react'
-import { WorkSpaceInfo } from './worker-space-info'
+import { WorkSpaceInfo } from './work-space-info'
 
 export const SidebarHeader = () => {
   return (
