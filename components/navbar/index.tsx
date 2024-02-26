@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavbarLeft } from './navbar-left'
+import { ModeToggle } from '@/components/ui/ThemeToggle'
 
 export const Navbar = () => {
   return (
@@ -9,7 +10,7 @@ export const Navbar = () => {
       <div className='flex justify-between items-center px-4 h-12'>
         <NavbarLeft />
         <div>
-          right
+          <ModeToggle />
         </div>
       </div>
     </section>

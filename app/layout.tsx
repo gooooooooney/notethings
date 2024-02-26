@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import "./clerk.css"
-import { ThemeProvider } from "@/components/ThemeProvider";
+import { Providers } from "@/components/providers";
 import { Toaster } from "@/components/ui/sonner";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
@@ -66,10 +66,10 @@ export default function RootLayout({
       <body className={
         cn(sans.className, "selection:bg-foreground selection:text-background")
         }>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <Providers attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           {children}
           <Toaster />
-        </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );
