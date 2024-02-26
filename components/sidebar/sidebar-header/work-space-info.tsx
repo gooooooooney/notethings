@@ -1,6 +1,6 @@
 "use client"
 import { Button, buttonVariants } from '@/components/ui/button'
-import { setIsCollapsed } from '@/hooks/sotre/use-ayout-tore'
+import { setIsCollapsed } from '@/hooks/sotre/use-layout-store'
 import { ChevronsLeft, ChevronsUpDown } from 'lucide-react'
 import React from 'react'
 import { WorkSpaceAvatar } from './work-space-avatar'

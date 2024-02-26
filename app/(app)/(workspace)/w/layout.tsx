@@ -1,4 +1,3 @@
-import { Sidebar } from '@/components/sidebar/index'
 import React from 'react'
 import { ResizableLayout } from './_components/resizable-layout'
 import { getCurrentUser } from '@/lib/auth/utils'
