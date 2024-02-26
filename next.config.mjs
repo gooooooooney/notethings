@@ -1,7 +1,8 @@
 import createJiti from "jiti";
+import path from "path";
 
 const jiti = createJiti(new URL(import.meta.url).pathname);
-jiti("./lib/env");
+jiti(path.resolve("./lib/env.ts"));
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
