@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
+import { env } from "@/lib/env";
 
 const sans = DM_Sans({ subsets: ["latin"] });
 

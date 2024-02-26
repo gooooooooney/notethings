@@ -2,11 +2,12 @@ import { Webhook } from 'svix'
 import { headers } from 'next/headers'
 import { WebhookEvent } from '@clerk/nextjs/server'
 import {db} from "@/lib/db";
+import { env } from '@/lib/env';
 
 export async function POST(req: Request) {
 
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
-  const CLERK_WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET
+  const CLERK_WEBHOOK_SECRET = env.CLERK_WEBHOOK_SECRET
 
   if (!CLERK_WEBHOOK_SECRET) {
     throw new Error('Please add CLERK_WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local')

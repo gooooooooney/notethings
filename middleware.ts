@@ -3,7 +3,7 @@ import { ignoredRoutes, publicRoutes, authRoutes, DEFAULT_LOGIN_REDIRECT } from 
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 import { NextResponse, type NextRequest } from "next/server";
-import { env } from "@/lib/env.mjs"
+import { env } from "@/lib/env"
 
 let redis: Redis;
 let ratelimit: Ratelimit;
