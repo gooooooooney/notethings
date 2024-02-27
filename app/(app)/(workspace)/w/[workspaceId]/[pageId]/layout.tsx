@@ -1,8 +1,11 @@
 import React from 'react'
 
-const PageLayout = () => {
+
+type PageLayoutProps = React.PropsWithChildren
+
+const PageLayout = ({ children }: PageLayoutProps) => {
   return (
-    <div>PageLayout</div>
+    <div>{children}</div>
   )
 }
 

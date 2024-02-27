@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { DM_Sans } from "next/font/google";
-import "./globals.css";
-import "./clerk.css"
+import "@/styles/globals.css";
+import "@/styles/prosemirror.css";
+import "@/styles/clerk.css";
 import { Providers } from "@/components/providers";
 import { Toaster } from "@/components/ui/sonner";
 import { siteConfig } from "@/config/site";
