@@ -7,14 +7,13 @@ generator client {
 
 generator zod {
   provider              = "zod-prisma"
-  output                = "./zod" 
-  relationModel         = true 
-  modelCase             = "camelCase" 
-  modelSuffix           = "Schema" 
-  useDecimalJs          = true 
-  prismaJsonNullability = true 
+  output                = "./zod"
+  relationModel         = true
+  modelCase             = "camelCase"
+  modelSuffix           = "Schema"
+  useDecimalJs          = true
+  prismaJsonNullability = true
 }
-
 
 datasource db {
   provider = "postgresql"
@@ -22,12 +21,51 @@ datasource db {
 }
 
 model User {
-  id String @id @default(uuid())
-  username String @unique
-  imageUrl String @db.Text
+  id             String       @id @default(uuid())
+  username       String       @unique
+  imageUrl       String       @db.Text
   // externalUserId is clerk's userId
-  externalUserId String @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  externalUserId String       @unique
+  workspaces     Workspace[]
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
 }
 
+model Workspace {
+  id String @id @default(uuid())
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  name      String
+  logo      String?
+  pages     Page[]
+  isActive  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deleted   Boolean  @default(false)
+
+  @@map("workspaces")
+}
+
+model Page {
+  id String @id @default(uuid())
+
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  workspaceId String
+  type        PageType   @default(Page)
+  name        String?
+  icon        String?
+  coverSrc    String?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  deleted     Boolean    @default(false)
+
+  @@map("pages")
+}
+
+enum PageType {
+  Folder
+  File
+  Page
+}
