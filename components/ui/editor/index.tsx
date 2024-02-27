@@ -2,7 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { useDebounceCallback } from "usehooks-ts";
 import {
-  defaultEditorProps,  EditorRoot,
+  defaultEditorProps, 
+   EditorRoot,
   EditorBubble,
   EditorCommand,
   EditorCommandItem,

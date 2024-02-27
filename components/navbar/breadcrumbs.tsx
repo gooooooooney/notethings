@@ -76,7 +76,7 @@ export const Breadcrumbs = () => {
         {
           paths.map((path, index) => {
             return path.menus ? (
-              <li className="inline-flex items-center">
+              <li key={index} className="inline-flex items-center">
                 <div className="flex items-center text-gray-500">
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -92,7 +92,7 @@ export const Breadcrumbs = () => {
                       {
                         path.menus.map((menu, index) => {
                           return (
-                            <DropdownMenuItem className='cursor-pointer' asChild key={menu.icon+menu.label}>
+                            <DropdownMenuItem className='cursor-pointer' asChild key={index}>
                               <Link href={menu.link}>
                                 {menu.label}
                               </Link>
@@ -107,7 +107,7 @@ export const Breadcrumbs = () => {
                 </div>
               </li>
             ) : (
-              <li className="inline-flex items-center">
+              <li key={index} className="inline-flex items-center">
                 <Link className={cn(buttonVariants({
                   variant: 'ghost',
                   size: 'sm',
