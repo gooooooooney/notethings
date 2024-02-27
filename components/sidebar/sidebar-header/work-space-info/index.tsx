@@ -7,8 +7,11 @@ import { Tooltip } from '@/components/tooltip'
 import { Popover } from '@/components/popover'
 import { WorkspacePopoverContent } from './work-space-popover-content'
 import { Icon } from '@/components/icon'
+import { useMediaQuery } from 'usehooks-ts'
+import { cn } from '@/lib/utils'
 
 export const WorkSpaceInfo = () => {
+  const matches = useMediaQuery("(max-width: 1024px)");
 
   return (
     <div className='transition-all relative p-2 flex flex-col justify-center flex-shrink-0 cursor-pointer'>
@@ -38,7 +41,10 @@ export const WorkSpaceInfo = () => {
               >
                 <Button
                   variant="ghost"
-                  className=" transition-opacity duration-200 size-6 hover:bg-foreground/10 opacity-0  group-hover/aside:opacity-100"
+                  className={cn("transition-opacity duration-200 size-6 ", {
+                    "opacity-100": matches,
+                    "hover:bg-foreground/10 opacity-0  group-hover/aside:opacity-100": !matches
+                  })}
                   onClick={(e) => {
                     e.stopPropagation()
                     setIsCollapsed(true)

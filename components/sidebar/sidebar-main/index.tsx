@@ -13,7 +13,7 @@ export const SidebarMain = () => {
     <div className='relative p-2 flex flex-col justify-center'>
       <div className='px-1.5'>
         <div>
-          <div className=''>
+          <div className='flex justify-between items-start'>
 
             <Collapsible
               open={isOpen}
@@ -21,7 +21,7 @@ export const SidebarMain = () => {
 
             >
               <CollapsibleTrigger asChild>
-                <div className='flex justify-between items-center w-full'>
+                <div >
                   <Tooltip
                     content={
                       <div className='flex flex-col'>
@@ -40,24 +40,22 @@ export const SidebarMain = () => {
                       Private
                     </Button>
                   </Tooltip>
-
-                  <Tooltip
-                    content="Add a new page"
-                  >
-                    <Button
-                      variant="ghost"
-                      className=" transition-opacity duration-200 size-5 hover:bg-foreground/10 opacity-0  group-hover/aside:opacity-100"
-                      size="icon">
-                      <Plus className='size-4' />
-                    </Button>
-                  </Tooltip>
                 </div>
               </CollapsibleTrigger>
               <CollapsibleContent>
                 <SidebarMenus />
               </CollapsibleContent>
             </Collapsible>
-
+            <Tooltip
+              content="Add a new page"
+            >
+              <Button
+                variant="ghost"
+                className=" transition-opacity duration-200 size-5 hover:bg-foreground/10 opacity-0  group-hover/aside:opacity-100"
+                size="icon">
+                <Plus className='size-4' />
+              </Button>
+            </Tooltip>
 
           </div>
         </div>

@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { ChevronsRight } from 'lucide-react'
 import { setIsCollapsed, useLayoutStore } from '@/hooks/sotre/use-layout-store'
 import { cn } from '@/lib/utils'
+import { Breadcrumbs } from './breadcrumbs'
 
 export const NavbarLeft = () => {
   const isCollapsed = useLayoutStore(s => s.isCollapsed)
@@ -21,7 +22,7 @@ export const NavbarLeft = () => {
         <ChevronsRight className='size-5' />
       </Button>
       <div>
-        breadcrumbs
+        <Breadcrumbs />
       </div>
     </div>
   )
