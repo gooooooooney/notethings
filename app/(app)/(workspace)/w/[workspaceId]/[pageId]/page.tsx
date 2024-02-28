@@ -5,7 +5,7 @@ import React from 'react'
 
 const Page = () => {
   return (
-    <div className="flex min-h-screen flex-col items-center gap-4 py-4 sm:px-5">
+    <div className="flex flex-col items-center gap-4 py-4 sm:px-5">
     
       <TailwindEditor />
     </div>

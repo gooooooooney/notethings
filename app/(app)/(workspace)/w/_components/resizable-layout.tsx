@@ -55,9 +55,9 @@ export const ResizableLayout = ({
       })} />
       <ResizablePanel
         defaultSize={defaultSize[1]}>
-        <main className='overflow-y-auto flex flex-col h-full'>
-          <section className='relative flex flex-1 h-full min-h-0 w-full overflow-x-hidden'>
-            <div className='w-full flex flex-col flex-1 h-full min-h-0'>
+        <main className='flex flex-col'>
+          <section className='relative flex flex-1 min-h-0 w-full overflow-hidden'>
+            <div className='w-full flex flex-col flex-1 min-h-0'>
               <Navbar />
               {children}
             </div>
