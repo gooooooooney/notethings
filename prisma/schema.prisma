@@ -16,26 +16,28 @@ generator zod {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+  // directUrl = env("DATABASE_URL_UNPOOLED")
 }
 
 model User {
-  id             String       @id @default(uuid())
-  username       String       @unique
-  imageUrl       String       @db.Text
+  id             String      @id @default(uuid())
+  username       String      @unique
+  imageUrl       String      @db.Text
   // externalUserId is clerk's userId
-  externalUserId String       @unique
+  externalUserId String      @unique
   workspaces     Workspace[]
-  createdAt      DateTime     @default(now())
-  updatedAt      DateTime     @updatedAt
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
 }
 
 model Workspace {
   id String @id @default(uuid())
 
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId String
+  ownerId String
+  owner   User   @relation(fields: [ownerId], references: [id])
 
   name      String
   logo      String?
@@ -44,8 +46,6 @@ model Workspace {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   deleted   Boolean  @default(false)
-
-  @@map("workspaces")
 }
 
 model Page {
@@ -53,19 +53,52 @@ model Page {
 
   workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
   workspaceId String
-  type        PageType   @default(Page)
-  name        String?
-  icon        String?
-  coverSrc    String?
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-  deleted     Boolean    @default(false)
 
-  @@map("pages")
+  blocks    Block[]
+  type      PageType @default(Page)
+  name      String?
+  icon      String?
+  coverSrc  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deleted   Boolean  @default(false)
+}
+
+model Block {
+  id        Int       @id @default(autoincrement())
+  type      BlockType @default(Text)
+  content   Json
+  pageId    String
+  page      Page      @relation(fields: [pageId], references: [id])
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
 
 enum PageType {
+  Page
   Folder
   File
+}
+
+enum BlockType {
+  Heading
+  Text
+  Todo
+  Image
+  Video
+  Audio
+  File
+  Table
+  Code
+  Embed
+  Collection
+  Bookmark
+  Divider
+  Equation
+  Callout
   Page
+  TableOfContents
+  Mention
+  Inline
+  EquationBlock
 }

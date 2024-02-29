@@ -1,6 +1,6 @@
 import * as z from "zod"
 import { PageType } from "@prisma/client"
-import { CompleteWorkspace, relatedWorkspaceSchema } from "./index"
+import { CompleteWorkspace, relatedWorkspaceSchema, CompleteBlock, relatedBlockSchema } from "./index"
 
 export const pageSchema = z.object({
   id: z.string(),
@@ -16,6 +16,7 @@ export const pageSchema = z.object({
 
 export interface CompletePage extends z.infer<typeof pageSchema> {
   workspace: CompleteWorkspace
+  blocks: CompleteBlock[]
 }
 
 /**
@@ -25,4 +26,5 @@ export interface CompletePage extends z.infer<typeof pageSchema> {
  */
 export const relatedPageSchema: z.ZodSchema<CompletePage> = z.lazy(() => pageSchema.extend({
   workspace: relatedWorkspaceSchema,
+  blocks: relatedBlockSchema.array(),
 }))

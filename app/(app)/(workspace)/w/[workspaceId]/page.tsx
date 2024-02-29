@@ -1,8 +1,12 @@
+"use client"
 import React from 'react'
 
 const WorkSpacePage = () => {
+
   return (
-    <div>WorkSpacePage</div>
+    <div className='relative'>
+      aaaaa
+    </div>
   )
 }
 

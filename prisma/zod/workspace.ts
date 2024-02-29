@@ -3,7 +3,7 @@ import { CompleteUser, relatedUserSchema, CompletePage, relatedPageSchema } from
 
 export const workspaceSchema = z.object({
   id: z.string(),
-  userId: z.string(),
+  ownerId: z.string(),
   name: z.string(),
   logo: z.string().nullish(),
   isActive: z.boolean(),
@@ -13,7 +13,7 @@ export const workspaceSchema = z.object({
 })
 
 export interface CompleteWorkspace extends z.infer<typeof workspaceSchema> {
-  user: CompleteUser
+  owner: CompleteUser
   pages: CompletePage[]
 }
 
@@ -23,6 +23,6 @@ export interface CompleteWorkspace extends z.infer<typeof workspaceSchema> {
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
 export const relatedWorkspaceSchema: z.ZodSchema<CompleteWorkspace> = z.lazy(() => workspaceSchema.extend({
-  user: relatedUserSchema,
+  owner: relatedUserSchema,
   pages: relatedPageSchema.array(),
 }))
