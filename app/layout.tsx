@@ -8,6 +8,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import { env } from "@/lib/env";
+import { TailwindIndicator } from "@/components/tailwind-indicator";
 
 const sans = DM_Sans({ subsets: ["latin"] });
 
@@ -70,6 +71,7 @@ export default function RootLayout({
         <Providers attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           {children}
           <Toaster />
+          <TailwindIndicator />
         </Providers>
       </body>
     </html>

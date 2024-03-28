@@ -14,7 +14,11 @@ const nextConfig = {
                 port: '',
             }
         ]
+    },
+    experimental: {
+        serverComponentsExternalPackages: ["@zenstackhq/runtime"],
     }
+
 };
 
 export default nextConfig;

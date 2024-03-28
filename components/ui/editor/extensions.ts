@@ -9,7 +9,7 @@ import {
   StarterKit,
   Placeholder,
 } from "novel/extensions";
-import { UploadImagesPlugin } from "novel/plugins";
+// import { UploadImagesPlugin } from "novel/plugins";
 
 
 //TODO I am using cx here to get tailwind autocomplete working, idk if someone else can write a regex to just capture the class key in objects
@@ -24,16 +24,16 @@ const tiptapLink = TiptapLink.configure({
   },
 });
 
-const tiptapImage = TiptapImage.extend({
-  addProseMirrorPlugins() {
-    return [UploadImagesPlugin()];
-  },
-}).configure({
-  allowBase64: true,
-  HTMLAttributes: {
-    class: cn("rounded-lg border border-muted"),
-  },
-});
+// const tiptapImage = TiptapImage.extend({
+//   addProseMirrorPlugins() {
+//     return [UploadImagesPlugin()];
+//   },
+// }).configure({
+//   allowBase64: true,
+//   HTMLAttributes: {
+//     class: cn("rounded-lg border border-muted"),
+//   },
+// });
 
 const updatedImage = UpdatedImage.configure({
   HTMLAttributes: {
@@ -103,7 +103,7 @@ export const defaultExtensions = [
   starterKit,
   placeholder,
   tiptapLink,
-  tiptapImage,
+  // tiptapImage,
   updatedImage,
   taskList,
   taskItem,

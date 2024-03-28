@@ -1,0 +1,110 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator zod {
+  provider              = "zod-prisma"
+  output                = "./zod"
+  relationModel         = true
+  modelCase             = "camelCase"
+  modelSuffix           = "Schema"
+  useDecimalJs          = true
+  prismaJsonNullability = true
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+  // directUrl = env("DATABASE_URL_UNPOOLED")
+}
+
+model User {
+  id String @id @default(uuid())
+  username String @unique
+  imageUrl String @db.Text
+  // externalUserId is clerk's userId
+  externalUserId String @unique
+  workspaces Workspace[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // everyone can signup, and user profile is also publicly readable
+  @@allow('create,read', true)
+
+  // only the user can update or delete their own profile
+  @@allow('update,delete', auth() == this)
+}
+
+model Workspace {
+  id String @id @default(uuid())
+
+  ownerId String
+  owner User @relation(fields: [ownerId], references: [id])
+
+  name String
+  logo String?
+  pages Page[]
+  isActive Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deleted Boolean @default(false)
+}
+
+model Page {
+  id String @id @default(uuid())
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  workspaceId String
+
+  blocks Block[]
+  type PageType @default(Page)
+  name String?
+  icon String?
+  coverSrc String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deleted Boolean @default(false)
+}
+
+model Block {
+  id Int @id @default(autoincrement())
+  type BlockType @default(Text)
+  content Json
+  pageId String
+  page Page @relation(fields: [pageId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum PageType {
+  Page
+  Folder
+  File
+}
+
+enum BlockType {
+  Heading
+  Text
+  Todo
+  Image
+  Video
+  Audio
+  File
+  Table
+  Code
+  Embed
+  Collection
+  Bookmark
+  Divider
+  Equation
+  Callout
+  Page
+  TableOfContents
+  Mention
+  Inline
+  EquationBlock
+}
